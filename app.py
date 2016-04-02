@@ -50,6 +50,10 @@ def get_compressed_photos(email):
 	root = 'uploads/'+email+'/compressed'
 	return ['/'+root+'/'+f for f in get_files_in_root(root) if is_photo(f)]
 
+@app.route('/')
+def home():
+	return 'hi'
+	
 @app.route('/pick')
 def pick():
 	email = request.args.get('email')
@@ -64,7 +68,7 @@ def pick():
 @app.route('/users')
 def show_users():
 	return to_json({'users':get_users()})
-	
+
 @app.route('/uploads')
 def show_uploads():
 	email = request.args.get('email')
@@ -94,4 +98,4 @@ def upload_file():
 
 
 if __name__ == "__main__":
-	app.run(debug=True, port = 3000)
+	app.run(debug=True)
